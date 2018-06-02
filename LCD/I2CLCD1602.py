@@ -17,9 +17,17 @@ def get_cpu_temp():     # get CPU temperature and store it into file "/sys/class
     tmp.close()
     return '{:.2f}'.format( float(cpu)/1000 ) + ' C'
  
-def get_time_now():     # get system time
-    return datetime.now().strftime('    %H:%M:%S')
-    
+def get_datetime_now():     # get system time
+    return datetime.now().strftime('%m/%d %H:%M:%S')
+
+def sendMessage(message):
+    lcd.setCursor(0,0)
+    lcd.message(message)
+
+def setupLCD():
+    mcp.output(3,1)
+    lcd.begin(16,2)
+
 def loopLCD():
     mcp.output(3,1)     # turn on LCD backlight
     lcd.begin(16,2)     # set number of LCD lines and columns
@@ -27,7 +35,7 @@ def loopLCD():
         #lcd.clear()
         lcd.setCursor(0,0)  # set cursor position
         lcd.message( 'CPU: ' + get_cpu_temp()+'\n' )# display CPU temperature
-        lcd.message( get_time_now() )   # display the time
+        lcd.message( get_datetime_now() )   # display the time
         sleep(1)
         
 def destroy():
@@ -47,10 +55,10 @@ except:
 # Create LCD, passing in MCP GPIO adapter.
 lcd = Adafruit_CharLCD(pin_rs=0, pin_e=2, pins_db=[4,5,6,7], GPIO=mcp)
 
-##if __name__ == '__main__':
-##    print 'Program is starting ... '
-##    try:
-##        loopLCD()
-##    except KeyboardInterrupt:
-##        destroy()
+if __name__ == '__main__':
+    print 'Program is starting ... '
+    try:
+        loopLCD()
+    except KeyboardInterrupt:
+        destroy()
 

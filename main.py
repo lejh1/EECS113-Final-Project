@@ -6,9 +6,9 @@
 ########################################################################
 
 #from Thermometer.Thermometer.py import *
-from LCD.I2CLCD1602.py import *
+from LCD.I2CLCD1602 import *
 #from LDR.LDR.py import *
-#from Ultrasonic.Ultrasonic.py import *
+#from Ultrasonic.Utrasonic import *
 #from IO.IO.py import *
 
 
@@ -16,6 +16,8 @@ from LCD.I2CLCD1602.py import *
 if __name__ == '__main__':
     print 'Program is starting ... '
     try:
-        loopLCD()
+        setupLCD()
+        sendMessage("HI")
+        #loopLCD()
     except KeyboardInterrupt:
         destroy()
