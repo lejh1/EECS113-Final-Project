@@ -8,8 +8,8 @@
 import RPi.GPIO as GPIO
 import time
 
-ledPinRed = 11    # RPI Board pin11
-ledPinGreen = 5    # RPI Board pin5
+ledPinRed = 11    # RPI Board pin11 NOT GPIO
+ledPinGreen = 13    # RPI Board pin5
 
 def setup():
 	GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
