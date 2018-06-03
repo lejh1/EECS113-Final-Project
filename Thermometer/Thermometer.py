@@ -34,7 +34,7 @@ def calculateTemp(value):
 def loop():
 	while True:
 		value = analogRead(0)		#read A0 pin		
-		print 'Temperature : %.2f'%(calculateTemp)
+		print 'Temperature : %.2f'%(calculateTemp(value))
 		time.sleep(0.01)
 
 def destroy():

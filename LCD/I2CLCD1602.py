@@ -20,13 +20,19 @@ def get_cpu_temp():     # get CPU temperature and store it into file "/sys/class
 def get_datetime_now():     # get system time
     return datetime.now().strftime('%m/%d %H:%M:%S')
 
-def sendMessage(message):
-    lcd.setCursor(0,0)
-    lcd.message(message)
-
 def setupLCD():
     mcp.output(3,1)
     lcd.begin(16,2)
+
+def sendMessage1(message):
+    lcd.setCursor(0,0)
+    lcd.message(message)
+
+
+def sendMessage2(message):
+    lcd.setCursor(0,1)
+    lcd.message(message)
+
 
 def loopLCD():
     mcp.output(3,1)     # turn on LCD backlight
@@ -60,5 +66,5 @@ if __name__ == '__main__':
     try:
         loopLCD()
     except KeyboardInterrupt:
-        destroy()
+        destroyLCD()
 
