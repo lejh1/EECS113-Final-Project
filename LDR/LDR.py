@@ -22,7 +22,7 @@ def analogWrite(value):
 
 def setupLDR():
 	GPIO.setmode(GPIO.BOARD)
-def readLRD():
+def readLDR():
         value = analogRead(1)
 	voltage = value / 255.0 * 3.3
 	return voltage

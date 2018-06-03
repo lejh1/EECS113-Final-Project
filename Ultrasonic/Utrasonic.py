@@ -34,7 +34,6 @@ def getSonar():     #get the measurement results of ultrasonic module,with unit:
     return distance
     
 def setupUS():
-    print 'Program is starting...'
     GPIO.setmode(GPIO.BOARD)       #numbers GPIOs by physical location
     GPIO.setup(trigPin, GPIO.OUT)   #
     GPIO.setup(echoPin, GPIO.IN)    #

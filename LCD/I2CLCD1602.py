@@ -28,6 +28,8 @@ def sendMessage1(message):
     lcd.setCursor(0,0)
     lcd.message(message)
 
+def LCDOn():
+    mcp.output(3,1)
 
 def sendMessage2(message):
     lcd.setCursor(0,1)
@@ -35,6 +37,7 @@ def sendMessage2(message):
 
 def clearLCD():
     lcd.clear()
+    mcp.output(3,0)
 
 def loopLCD():
     mcp.output(3,1)     # turn on LCD backlight
@@ -48,6 +51,7 @@ def loopLCD():
         
 def destroyLCD():
     lcd.clear()
+    mcp.output(3,0)
     
 PCF8574_address = 0x27  # I2C address of the PCF8574 chip.
 PCF8574A_address = 0x3F  # I2C address of the PCF8574A chip.
