@@ -34,11 +34,14 @@ if __name__ == '__main__':
     print 'Program is starting ... '
     try:
         setupMaster()
-        #mode 1
         while True:
-            #mode1()
-            checkSwitchMode()
-            sleep(0.01)
+            #mode1
+            if(checkSwitchMode()):
+                mode1()
+                sleep(0.01)
+            #mode2
+            else :
+                print 'here'
     except KeyboardInterrupt:
         destroyMaster()
     

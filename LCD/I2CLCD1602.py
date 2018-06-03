@@ -33,6 +33,8 @@ def sendMessage2(message):
     lcd.setCursor(0,1)
     lcd.message(message)
 
+def clearLCD():
+    lcd.clear()
 
 def loopLCD():
     mcp.output(3,1)     # turn on LCD backlight

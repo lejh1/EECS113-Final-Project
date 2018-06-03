@@ -23,25 +23,24 @@ def setupIO():
 
 	#print 'using pin%d'%ledPin
 
-def greenLedOn:
+def greenLedOn():
         GPIO.output(ledPinGreen, GPIO.HIGH)  # led on
 
-def greenLedOff:
+def greenLedOff():
         GPIO.output(ledPinGreen, GPIO.LOW)  # led on
 
-def redLedOn:
+def redLedOn():
         GPIO.output(ledPinRed, GPIO.HIGH)  # led on
 
-def redLedOff:
+def redLedOff():
         GPIO.output(ledPinRed, GPIO.LOW)  # led on
 
 def checkSwitchMode(): #Low = True = in home High= False = security
         print GPIO.input(switchPin)
-
-##        if GPIO.input(switchPin)==GPIO.LOW:
-##                return True
-##        else :
-##                return False
+        if GPIO.input(switchPin)==GPIO.LOW:
+                return True
+        else :
+                return False
 
 def destroyAll():
 	GPIO.output(ledPinRed, GPIO.LOW)     # led off
