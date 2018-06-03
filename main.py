@@ -10,13 +10,15 @@ from LCD.I2CLCD1602 import *
 #from LDR.LDR.py import *
 from Ultrasonic.Utrasonic import *
 from IO.IO import *
+import time
+
 
 setDistance = 0;
 
 def destroyMaster():
     destroyLCD()
     destroyAll()
-    #destroyLDR()
+    destroyLDR()
 
 
 def setupMaster():
@@ -24,7 +26,6 @@ def setupMaster():
     setupTemp()
     setupIO()
     setupLCD()
-   # setupLDR()
     
 def mode1():
     value = analogRead(0)
@@ -47,11 +48,11 @@ if __name__ == '__main__':
             #mode1
             if(checkSwitchMode()):
                 mode1()
-                sleep(0.01)
+                time.sleep(0.01)
             #mode2
             else :
                 mode2()
-                sleep(0.01)
+                time.sleep(0.01)
     except KeyboardInterrupt:
         destroyMaster()
     
