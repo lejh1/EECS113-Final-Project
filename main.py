@@ -16,6 +16,7 @@ from LCD.I2CLCD1602 import *
 if __name__ == '__main__':
     print 'Program is starting ... '
     try:
+        setupMaster()
         setupLCD()
         sendMessage("HI")
         #loopLCD()
@@ -25,6 +26,8 @@ if __name__ == '__main__':
 def destroyMaster():
     destroyLCD()
     destroyAll()
+    destroyLDR()
+
 
 def setupMaster():
     setupUS()
