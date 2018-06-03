@@ -8,18 +8,19 @@
 from Thermometer.Thermometer import *
 from LCD.I2CLCD1602 import *
 #from LDR.LDR.py import *
-#from Ultrasonic.Utrasonic import *
+from Ultrasonic.Utrasonic import *
 from IO.IO import *
 
+setDistance = 0;
 
 def destroyMaster():
     destroyLCD()
-    #destroyAll()
+    destroyAll()
     #destroyLDR()
 
 
 def setupMaster():
-   # setupUS()
+    setupUS()
     setupTemp()
     setupIO()
     setupLCD()
@@ -29,11 +30,19 @@ def mode1():
     value = analogRead(0)
     sendMessage1("Temp: " + str("%.2f"%calculateTemp(value)) + 'C')
     sendMessage2(get_datetime_now())
-        
+
+def mode2():
+    global setDistance
+    if(getSonar < ((setDistance*4)/5):
+       print 'intruder!!!!'
+    
+    
 if __name__ == '__main__':
     print 'Program is starting ... '
     try:
         setupMaster()
+        global setDistance = getSonar(); # set default distance for US
+        print setDistance
         while True:
             #mode1
             if(checkSwitchMode()):
@@ -41,7 +50,8 @@ if __name__ == '__main__':
                 sleep(0.01)
             #mode2
             else :
-                print 'here'
+                mode2()
+                sleep(0.01)
     except KeyboardInterrupt:
         destroyMaster()
     
