@@ -35,6 +35,12 @@ def redLedOn:
 def redLedOff:
         GPIO.output(ledPinRed, GPIO.LOW)  # led on
 
+def checkSwitchMode(): #Low = True = in home High= False = security
+        if GPIO.input(switchPin)==GPIO.LOW:
+                return True
+        else :
+                return False
+
 def destroyAll():
 	GPIO.output(ledPinRed, GPIO.LOW)     # led off
 	GPIO.output(ledPinGreen, GPIO.LOW)     # led off
