@@ -9,7 +9,7 @@ from Thermometer.Thermometer import *
 from LCD.I2CLCD1602 import *
 #from LDR.LDR.py import *
 #from Ultrasonic.Utrasonic import *
-#from IO.IO.py import *
+from IO.IO import *
 
 
 def destroyMaster():
@@ -21,7 +21,7 @@ def destroyMaster():
 def setupMaster():
    # setupUS()
     setupTemp()
-   # setupIO()
+    setupIO()
     setupLCD()
    # setupLDR()
     
@@ -34,10 +34,11 @@ if __name__ == '__main__':
     print 'Program is starting ... '
     try:
         setupMaster()
-       # setupLCD()
-       #mode 1
+        #mode 1
         while True:
-            mode1()
+            #mode1()
+            checkSwitchMode()
+            sleep(0.01)
     except KeyboardInterrupt:
         destroyMaster()
     
