@@ -20,4 +20,17 @@ if __name__ == '__main__':
         sendMessage("HI")
         #loopLCD()
     except KeyboardInterrupt:
-        destroy()
+        destroyMaster()
+
+def destroyMaster():
+    destroyLCD()
+    destroyAll()
+
+def setupMaster():
+    setupUS()
+    setupTemp()
+    setupIO()
+    setupLCD()
+    setupLDR()
+    
+    

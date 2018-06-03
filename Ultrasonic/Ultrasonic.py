@@ -33,7 +33,7 @@ def getSonar():     #get the measurement results of ultrasonic module,with unit:
     distance = pingTime * 340.0 / 2.0 / 10000.0     # the sound speed is 340m/s, and calculate distance
     return distance
     
-def setupUS():
+def setup():
     print 'Program is starting...'
     GPIO.setmode(GPIO.BOARD)       #numbers GPIOs by physical location
     GPIO.setup(trigPin, GPIO.OUT)   #
@@ -47,7 +47,7 @@ def loop():
         time.sleep(1)
         
 if __name__ == '__main__':     #program start from here
-    setupUS()
+    setup()
     try:
         loop()
     except KeyboardInterrupt:  #when 'Ctrl+C' is pressed, the program will exit

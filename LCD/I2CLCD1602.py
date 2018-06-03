@@ -38,7 +38,7 @@ def loopLCD():
         lcd.message( get_datetime_now() )   # display the time
         sleep(1)
         
-def destroy():
+def destroyLCD():
     lcd.clear()
     
 PCF8574_address = 0x27  # I2C address of the PCF8574 chip.

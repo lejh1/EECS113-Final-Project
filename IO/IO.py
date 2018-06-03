@@ -11,13 +11,17 @@ import time
 ledPinRed = 11    # RPI Board pin11 NOT GPIO
 ledPinGreen = 13    # RPI Board pin5
 
-def setup():
+switchPin = 15 # 
+
+def setupIO():
 	GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
 	GPIO.setup(ledPinRed, GPIO.OUT)   # Set ledPinRed's mode is output
 	GPIO.output(ledPinRed, GPIO.LOW) # Set ledPinRed low to off led
         GPIO.setup(ledPinGreen, GPIO.OUT)   # Set ledPinGreen's mode is output
 	GPIO.output(ledPinGreen, GPIO.LOW) # Set ledPinGreen low to off led
-	print 'using pin%d'%ledPin
+        GPIO.setup(switchPin, GPIO.IN)   # Set ledPinGreen's mode is output
+
+	#print 'using pin%d'%ledPin
 
 def greenLedOn:
         GPIO.output(ledPinGreen, GPIO.HIGH)  # led on
@@ -31,7 +35,7 @@ def redLedOn:
 def redLedOff:
         GPIO.output(ledPinRed, GPIO.LOW)  # led on
 
-def destroyLed():
+def destroyAll():
 	GPIO.output(ledPinRed, GPIO.LOW)     # led off
 	GPIO.output(ledPinGreen, GPIO.LOW)     # led off
 	GPIO.cleanup()                     # Release resource

@@ -21,7 +21,7 @@ def analogRead(chn):
 def analogWrite(value):
 	bus.write_byte_data(address,cmd,value)	
 
-def setup():
+def setupLDR():
 	global p
 	GPIO.setmode(GPIO.BOARD)
 	GPIO.setup(ledPin,GPIO.OUT)
@@ -38,13 +38,12 @@ def loop():
 		print 'ADC Value : %d, Voltage : %.2f'%(value,voltage)
 		time.sleep(0.01)
 
-def destroy():
+def destroyLDR():
 	bus.close()
-	GPIO.cleanup()
 	
 if __name__ == '__main__':
 	print 'Program is starting ... '
-	setup()
+	setupLDR()
 	try:
 		loop()
 	except KeyboardInterrupt:

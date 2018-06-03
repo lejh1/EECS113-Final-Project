@@ -21,7 +21,7 @@ def analogRead(chn): #used for reading value, input is pin from PCF8591
 #def analogWrite(value): 
 #	bus.write_byte_data(address,cmd,value)	
 	
-def setup(): #setup GPIO
+def setupTemp(): #setup GPIO
 	GPIO.setmode(GPIO.BOARD)
 
 def calculateTemp(value):
@@ -42,7 +42,7 @@ def destroy():
 	
 if __name__ == '__main__':
 	print 'Program is starting ... '
-	setup()
+	setupTemp()
 	try:
 		loop()
 	except KeyboardInterrupt:
