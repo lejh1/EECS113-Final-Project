@@ -11,11 +11,13 @@ from LDR.LDR import *
 from Ultrasonic.Utrasonic import *
 from IO.IO import *
 from Server.Server import *
+from Server.UserEmail import *
+
 import time
 
 
 setDistance = 0;
-darkEstimate = 2;#3? need to find good standard
+darkEstimate = 3;#3? need to find good standard
 
 def destroyMaster():
     destroyLCD()
@@ -37,16 +39,17 @@ def mode1():
 
 def mode2():
     if((getSonar() < ((setDistance*4)/5)) or (readLDR() < darkEstimate)):
-        print 'intruder!!!!'
-        #sendEmail()
-        break
-        #need to add email stuff 
-    
+        time.sleep(5) #Give user 5 seconds to turn off security system
+        if(checkSwitchMode() == 0):
+            print 'intruder!!!!'
+            sendEmail("Intruder Alert!", "JujuPi Security System v1.2 has detected an intruder in your household.")
+            time.sleep(10) #stop checking for 10 seconds so we dont spam email    
     
 if __name__ == '__main__':
     print 'Program is starting ... '
     try:
         setupMaster()
+        u = UserEmail()
         setDistance = getSonar(); # set default distance for US
         print setDistance
         sendEmail("Intruder Test!")
@@ -56,12 +59,29 @@ if __name__ == '__main__':
                 LCDOn()
                 while checkSwitchMode() == 1: 
                     mode1()
+                    
+                    #   Checks for and Temperature Requests via Email
+                    emails = u.checkEmailSubjects("TEMP REQUEST") 
+                    if(len(emails) > 0)
+                        value = analogread(0)
+                        sendEmail("Requested Temperature", str(caculateTemp(value)) + 'C')
+                        u.markAsRead(emails)
+                        
                     time.sleep(0.01)
             #mode2
             else :
                 clearLCD()
                 while checkSwitchMode() == 0:
                     mode2()
+
+                    #   Checks for and Temperature Requests via Email
+                    emails = u.checkEmailSubjects("TEMP REQUEST")
+                    if(len(emails) > 0)
+                        value = analogread(0)
+                        sendEmail("Requested Temperature", str(caculateTemp(value)) + 'C')
+                        u.markAsRead(emails)
+                        
+                    #   slight to give modules time to adjust
                     time.sleep(0.01)
     except KeyboardInterrupt:
         destroyMaster()

@@ -19,7 +19,8 @@ from email.MIMEText import MIMEText
 def sendEmail(subject, message):
     fromaddr = "JujuPi2018@gmail.com"
     #toaddr = "JujuPi2018@gmail.com"
-    toaddr = "jerrl10@uci.edu"
+    toaddr = "16262786801@tmomail.net"	
+    #toaddr = "jerrl10@uci.edu"
     msg = MIMEMultipart()
     msg['From'] = fromaddr
     msg['To'] = toaddr
