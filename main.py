@@ -10,6 +10,7 @@ from LCD.I2CLCD1602 import *
 from LDR.LDR import *
 from Ultrasonic.Utrasonic import *
 from IO.IO import *
+from Server.Server import *
 import time
 
 
@@ -37,6 +38,8 @@ def mode1():
 def mode2():
     if((getSonar() < ((setDistance*4)/5)) or (readLDR() < darkEstimate)):
         print 'intruder!!!!'
+        #sendEmail()
+        break
         #need to add email stuff 
     
     
@@ -46,6 +49,7 @@ if __name__ == '__main__':
         setupMaster()
         setDistance = getSonar(); # set default distance for US
         print setDistance
+        sendEmail("Intruder Test!")
         while True:
             #mode1
             if(checkSwitchMode()):
