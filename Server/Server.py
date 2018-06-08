@@ -8,27 +8,22 @@ import smtplib
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 
-##def sendEmail(message):
-##    server = smtplib.SMTP('smtp.gmail.com', 587)
-##    server.starttls()
-##    server.login("JujuPi2018@gmail.com", "Juju2018")
-##
-##    server.sendmail("JujuPi2018@gmail.com", "JujuPi2018@gmail.com", message)
-##    server.quit()
-
 def sendEmail(subject, message):
+    #   Email Sender address
     fromaddr = "JujuPi2018@gmail.com"
-    #toaddr = "JujuPi2018@gmail.com"
+    #   Email Receiver address (using sms-to-text)
     toaddr = "16262786801@tmomail.net"	
     #toaddr = "jerrl10@uci.edu"
+
+    #   Creating the email From, To, Body and Subject lines
     msg = MIMEMultipart()
     msg['From'] = fromaddr
     msg['To'] = toaddr
     msg['Subject'] = subject
-     
     body = message
     msg.attach(MIMEText(body, 'plain'))
-     
+
+    #   Using an SMTP Library to connect to our Gmail and Send the Message
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
     server.login(fromaddr, "Juju2018")

@@ -13,8 +13,8 @@ class UserEmail:
         server.login(self.userName, self.password)
         self.server = server
  
-    #   The IMAPClient search returns a list of Id's that match the given criteria.
-    #   An Id in this case identifies a specific email
+        #   Searches thru the Email's Inbox and returns an ID number corresponding to
+        #   the ID number of the email if found, if it doesnt find anything then it returns empty
     def checkEmailSubjects(self, subject):
         #   search within Inbox
         self.server.select_folder('INBOX')  
@@ -22,10 +22,10 @@ class UserEmail:
         #   build the search criteria (e.g. unread emails with the given subject)
         self.searchCriteria = ['UNSEEN', 'SUBJECT', subject]
  
-        #   conduct the search and return the resulting Ids
+        #   Conduct the search and return the resulting Ids
         return self.server.search(self.searchCriteria)
 
-     #  Mark specic email as read
+        #   Mark specic email as read using the ID
     def markAsRead(self, mailIds, folder='INBOX'):
         self.server.select_folder('INBOX')  
         self.server.set_flags(mailIds, [SEEN])
