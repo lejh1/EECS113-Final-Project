@@ -69,9 +69,9 @@ if __name__ == '__main__':
                     
                     #   Checks for a Temperature Request via Email
                     emails = u.checkEmailSubjects("TEMP REQUEST") 
-                    if(len(emails) > 0)
-                        value = analogread(0)
-                        sendEmail("Requested Temperature", str(caculateTemp(value)) + 'C')
+                    if(len(emails) > 0):
+                        value = analogRead(0)
+                        sendEmail("Requested Temperature", str("%.2f"%abs(calculateTemp(value))) + 'C')
                         u.markAsRead(emails)
                         
                     time.sleep(0.1) #slight delay for update reasons
@@ -83,9 +83,9 @@ if __name__ == '__main__':
 
                     #   Checks for and Temperature Requests via Email
                     emails = u.checkEmailSubjects("TEMP REQUEST")
-                    if(len(emails) > 0)
-                        value = analogread(0)
-                        sendEmail("Requested Temperature", str(caculateTemp(value)) + 'C')
+                    if(len(emails) > 0):
+                        value = analogRead(0)
+                        sendEmail("Requested Temperature", str(".2f"%abs(calculateTemp(value))) + 'C')
                         u.markAsRead(emails)
                         
                     time.sleep(0.10)#slight delay for update reasons

@@ -13,7 +13,7 @@ address = 0x48
 bus=smbus.SMBus(1)
 cmd=0x40
 
-def analogRead(chn):
+def analogRead1(chn):
 	value = bus.read_byte_data(address,cmd+chn)
 	return value
 	
@@ -23,13 +23,13 @@ def analogWrite(value):
 def setupLDR():
 	GPIO.setmode(GPIO.BOARD)
 def readLDR():
-        value = analogRead(1)
+        value = analogRead1(1)
 	voltage = value / 255.0 * 3.3
 	return voltage
 	
 def loop():
 	while True:
-		value = analogRead(1)
+		value = analogRead1(1)
 		voltage = value / 255.0 * 3.3
 		print 'ADC Value : %d, Voltage : %.2f'%(value,voltage)
 		time.sleep(0.01)
